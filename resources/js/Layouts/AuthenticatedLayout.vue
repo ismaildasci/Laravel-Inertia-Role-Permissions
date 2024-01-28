@@ -6,8 +6,13 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
+import {Inertia} from "@inertiajs/inertia";
 
 const showingNavigationDropdown = ref(false);
+const logout = () => {
+    Inertia.post(route('logout'));
+}
+
 </script>
 
 <template>
@@ -64,10 +69,11 @@ const showingNavigationDropdown = ref(false);
                                     </template>
 
                                     <template #content>
-                                        <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
-                                        <DropdownLink :href="route('logout')" method="post" as="button">
+                                        <DropdownLink :href="route('profile.show')"> Profile </DropdownLink>
+                                        <DropdownLink :href="route('logout')" @click.prevent="logout" as="button">
                                             Log Out
                                         </DropdownLink>
+
                                     </template>
                                 </Dropdown>
                             </div>
@@ -127,8 +133,8 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('logout')" method="post" as="button">
+                            <ResponsiveNavLink :href="route('profile.show')"> Profile </ResponsiveNavLink>
+                            <ResponsiveNavLink @click.prevent="logout" method="post" as="button">
                                 Log Out
                             </ResponsiveNavLink>
                         </div>
